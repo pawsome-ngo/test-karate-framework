@@ -1,13 +1,16 @@
 package com.example.karate_project;
 
-import org.junit.jupiter.api.Test;
+import com.intuit.karate.junit5.Karate;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class KarateProjectApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+	@Karate.Test
+	Karate runKarateTests() {
 
+		// Tells Karate to run all .feature files in the same package (or sub-packages)
+		return Karate.run().tags("@local-print").relativeTo(getClass());
+
+	}
 }
